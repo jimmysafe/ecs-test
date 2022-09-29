@@ -40,27 +40,27 @@ resource "aws_subnet" "public_subnet_2" {
   }
 }
 
-# resource "aws_subnet" "private-subnet-1" {
-#   vpc_id = aws_vpc.main.id
-#   cidr_block = "10.0.2.0/24"
-#   availability_zone = "${var.aws_region}c"
-#   map_public_ip_on_launch = false
+resource "aws_subnet" "private_subnet_1" {
+  vpc_id = aws_vpc.main.id
+  cidr_block = "10.0.2.0/24"
+  availability_zone = "${var.aws_region}a"
+  map_public_ip_on_launch = false
 
-#   tags = {
-#     "Name" = "Private Subnet 1"
-#   }
-# }
+  tags = {
+    "Name" = "${local.name}-pvt-sub-1"
+  }
+}
 
-# resource "aws_subnet" "private-subnet-2" {
-#   vpc_id = aws_vpc.main.id
-#   cidr_block = "10.0.3.0/24"
-#   availability_zone = "${var.aws_region}d"
-#   map_public_ip_on_launch = false
+resource "aws_subnet" "private_subnet_2" {
+  vpc_id = aws_vpc.main.id
+  cidr_block = "10.0.3.0/24"
+  availability_zone = "${var.aws_region}b"
+  map_public_ip_on_launch = false
 
-#   tags = {
-#     "Name" = "Private Subnet 2"
-#   }
-# }
+  tags = {
+    "Name" = "${local.name}-pvt-sub-2"
+  }
+}
 
 resource "aws_internet_gateway" "internet_gateway" {
   vpc_id = aws_vpc.main.id
