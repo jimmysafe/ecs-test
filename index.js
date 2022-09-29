@@ -16,6 +16,13 @@ app.get("/users", (req, res) => {
   });
 });
 
+app.get("/reviews", (req, res) => {
+  res.json({
+    users: ["Cool Movie!"],
+    success: true,
+  });
+});
+
 app.listen(process.env.PORT, () =>
   console.log(`🚀 Listening on: http://localhost:${process.env.PORT}`)
 );
