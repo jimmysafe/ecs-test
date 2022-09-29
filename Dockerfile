@@ -1,8 +1,5 @@
 FROM amd64/node:14-alpine As development
 
-ARG PORT
-ARG DB_HOST
-
 WORKDIR /app
 
 COPY --chown=node:node package*.json ./
