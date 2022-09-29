@@ -3,10 +3,7 @@ const app = express();
 require("dotenv").config();
 
 app.get("/", (req, res) => {
-  res.json({
-    env: process.env.DB_HOST,
-    live: true,
-  });
+  res.send(`status env: ${process.env.DB_HOST}`);
 });
 
 app.get("/users", (req, res) => {
