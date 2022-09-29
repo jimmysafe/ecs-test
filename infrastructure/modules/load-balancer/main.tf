@@ -37,6 +37,7 @@ resource "aws_lb" "lb" {
   }
 }
 
+
 resource "aws_lb_target_group" "lb_tg" {
   name        = "${local.name}-lb-tg-${substr(uuid(), 0, 3)}"
   port        = 80

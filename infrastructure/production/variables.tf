@@ -27,6 +27,11 @@ variable "app_port" {
   description = "Port on which the dockerized app will run on (EXPOSED PORT NUMBER in Dockerfile)"
 }
 
+variable "domain" {
+  type        = string
+  description = "Domain of project. e.g. app.example.com or example.com"
+}
+
 
 
 

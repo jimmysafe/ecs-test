@@ -11,6 +11,17 @@ module "ecr" {
     aws_region  = var.aws_region
 }
 
+module "route53" {
+    source = "../modules/route53"
+
+    domain = var.domain
+    lb_dns_name = module.load-balancer.output_lb_dns_name
+    lb_zone_id = module.load-balancer.output_lb_zone_id
+    depends_on = [
+      module.load-balancer
+    ]
+}
+
 module "vpc" {
     source = "../modules/vpc"
 

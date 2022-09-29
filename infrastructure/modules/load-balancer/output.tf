@@ -7,3 +7,11 @@ output "output_lb_target_group_arn" {
     description = "Load Balancer Target Group ARN"
     value = aws_lb_target_group.lb_tg.arn
 }
+output "output_lb_dns_name" {
+    description = "Load Balancer DNS Name"
+    value = aws_lb.lb.dns_name
+}
+output "output_lb_zone_id" {
+    description = "Load Balancer Zone ID"
+    value = aws_lb.lb.zone_id
+}
