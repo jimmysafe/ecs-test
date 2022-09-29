@@ -27,6 +27,11 @@ variable "subnet_2_id" {
   description = "AWS Subnet Public/Private ID 2"
 }
 
+variable "ssl_certificate_arn" {
+  type        = string
+  description = "AWS SSL Certificate ARN"
+}
+
 variable "app_port" {
   type        = number
   description = "Port on which the dockerized app will run on (EXPOSED PORT NUMBER in Dockerfile)"

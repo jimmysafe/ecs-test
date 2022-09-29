@@ -17,9 +17,6 @@ module "route53" {
     domain = var.domain
     lb_dns_name = module.load-balancer.output_lb_dns_name
     lb_zone_id = module.load-balancer.output_lb_zone_id
-    depends_on = [
-      module.load-balancer
-    ]
 }
 
 module "vpc" {
@@ -40,6 +37,7 @@ module "load-balancer" {
     subnet_1_id = module.vpc.output_public_subnet_1_id
     subnet_2_id = module.vpc.output_public_subnet_2_id
     app_port = var.app_port
+    ssl_certificate_arn = module.route53.output_ssl_certificate_arn
     depends_on = [
       module.ecr,
       module.vpc
