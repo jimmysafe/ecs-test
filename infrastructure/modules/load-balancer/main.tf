@@ -63,10 +63,16 @@ resource "aws_lb_listener" "lb_listener_http" {
   port              = "80"  
   protocol          = "HTTP"
   
-  default_action {    
-    target_group_arn = "${aws_lb_target_group.lb_tg.arn}"
-    type             = "forward"  
+  default_action {
+    type = "redirect"
+
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
   }
+
 }
 
 resource "aws_lb_listener" "lb_listener_https" {  
