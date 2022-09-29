@@ -4,7 +4,7 @@ require("dotenv").config();
 
 app.get("/", (req, res) => {
   res.json({
-    api: "ecs-test",
+    env: process.env.DB_HOST,
     live: true,
   });
 });

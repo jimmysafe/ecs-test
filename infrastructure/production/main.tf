@@ -44,6 +44,22 @@ module "load-balancer" {
     ]
 }
 
+module "rds" {
+    source = "../modules/rds"
+
+    project_name = var.project_name
+    environment = var.environment
+    ecs_service_sg_id = module.ecs.output_ecs_service_sg_id
+    subnet_1_id = module.vpc.output_private_subnet_1_id
+    subnet_2_id = module.vpc.output_private_subnet_2_id
+    vpc_id      = module.vpc.output_vpc_id
+
+    db_instance_class = var.db_instance_class
+    db_username       = var.db_username
+    db_name           = var.db_name
+    db_password       = var.db_password
+}
+
 module "ecs" {
     source = "../modules/ecs"
 

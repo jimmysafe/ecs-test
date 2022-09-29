@@ -2,7 +2,6 @@ locals {
   name = "${lower(var.project_name)}-${var.environment}"
 }
 
-
 resource "aws_ecs_cluster" "main" {
   name = "${local.name}-cluster"
 }

@@ -1,13 +1,3 @@
-variable "aws_profile" {
-  type        = string
-  description = "AWS profile to use"
-}
-
-variable "aws_region" {
-  type        = string
-  description = "AWS region to use"
-}
-
 variable "environment" {
   type        = string
   description = "Staging or production (staging/prod)"
@@ -22,14 +12,24 @@ variable "project_name" {
   description = "Name of project. e.g. limelight"
 }
 
-variable "app_port" {
-  type        = number
-  description = "Port on which the dockerized app will run on (EXPOSED PORT NUMBER in Dockerfile)"
+variable "vpc_id" {
+  type        = string
+  description = "AWS VPC ID"
 }
 
-variable "domain" {
+variable "subnet_1_id" {
   type        = string
-  description = "Domain of project. e.g. app.example.com or example.com"
+  description = "AWS Subnet Public/Private ID 1"
+}
+
+variable "subnet_2_id" {
+  type        = string
+  description = "AWS Subnet Public/Private ID 2"
+}
+
+variable "ecs_service_sg_id" {
+  type        = string
+  description = "ECS Service Security Group ID"
 }
 
 variable "db_instance_class" {
@@ -51,8 +51,5 @@ variable "db_password" {
   type        = string
   description = "Db Name"
 }
-
-
-
 
 
