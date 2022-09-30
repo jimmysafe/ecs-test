@@ -25,3 +25,25 @@ resource "aws_ecr_repository" "ecr" {
     }
 }
 
+resource "aws_ecr_lifecycle_policy" "expire_policy" {
+  repository = aws_ecr_repository.ecr.name
+
+  policy = <<EOF
+  {
+      "rules": [
+          {
+              "rulePriority": 1,
+              "description": "Keep last 5 images",
+              "selection": {
+                  "tagStatus": "any",
+                  "countType": "imageCountMoreThan",
+                  "countNumber": 5
+              },
+              "action": {
+                  "type": "expire"
+              }
+          }
+      ]
+  }
+  EOF
+}

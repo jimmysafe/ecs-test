@@ -95,6 +95,9 @@ resource "aws_ecs_task_definition" "td" {
     operating_system_family = "LINUX"
     cpu_architecture        = "X86_64"
   }
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
 }
 
 
