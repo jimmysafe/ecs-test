@@ -37,10 +37,6 @@ resource "aws_ecs_task_definition" "td" {
       "image": "${var.ecr_image}",
       "essential": true,
       "environment": [],
-      "secrets": [{
-        "name": "env",
-        "valueFrom": "arn:aws:secretsmanager:eu-central-1:659393744621:secret:test-secret-nkKidB"
-      }],
       "portMappings": [
         {
           "containerPort": ${var.app_port},
