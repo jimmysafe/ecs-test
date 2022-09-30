@@ -47,3 +47,7 @@ variable "subnet_2_id" {
   description = "AWS Subnet Public/Private ID 2"
 }
 
+variable "s3_arn" {
+    type        = string
+    description = "AWS S3 ARN"
+}

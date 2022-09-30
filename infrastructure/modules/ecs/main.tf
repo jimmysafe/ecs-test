@@ -37,6 +37,12 @@ resource "aws_ecs_task_definition" "td" {
       "image": "${var.ecr_image}",
       "essential": true,
       "environment": [],
+      "environmentFiles": [
+        {
+          "value": "${var.s3_arn}/.${var.environment}.env",
+          "type": "s3"
+        }
+      ],
       "portMappings": [
         {
           "containerPort": ${var.app_port},
