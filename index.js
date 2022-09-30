@@ -16,7 +16,6 @@ app.get("/users", (req, res) => {
 app.get("/reviews", (req, res) => {
   res.json({
     users: ["Cool Movie!"],
-    success: true,
   });
 });
 
