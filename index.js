@@ -2,8 +2,10 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 
+const env = process.env.vars ? JSON.parse(process.env.vars) : process.env;
+
 app.get("/", (req, res) => {
-  res.json(process.env);
+  res.json(env);
 });
 
 app.get("/users", (req, res) => {
