@@ -24,26 +24,3 @@ resource "aws_ecr_repository" "ecr" {
         interpreter = ["/bin/bash", "-c"]
     }
 }
-
-resource "aws_ecr_lifecycle_policy" "expire_policy" {
-  repository = aws_ecr_repository.ecr.name
-
-  policy = <<EOF
-  {
-    "rules": [
-      {
-        "rulePriority": 1,
-        "description": "keep 3 images",
-        "selection": {
-          "tagStatus": "any",
-          "countType": "imageCountMoreThan",
-          "countNumber": 3
-        },
-        "action": {
-          "type": "expire"
-        }
-      }
-    ]
-  }
-  EOF
-}
