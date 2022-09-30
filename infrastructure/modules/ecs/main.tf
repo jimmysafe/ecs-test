@@ -20,6 +20,45 @@ data "aws_iam_role" "ecs_task_execution_role" {
   name = "ecsTaskExecutionRole"
 }
 
+resource "aws_iam_policy" "s3_access" {
+  name        = "${var.environment}EcsTaskExecutionS3Access"
+  description = "ECS Task Executioner can access S3 objects"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+        {
+            Effect = "Allow"
+            Action = [
+                "s3:GetObject"
+            ],
+            Resource = [
+                "${var.s3_arn}/.${var.environment}.env"
+            ]
+        },
+        {
+            Effect = "Allow"
+            "Action": [
+                "s3:GetBucketLocation"
+            ],
+            Resource = [
+                "${var.s3_arn}",
+                "${var.s3_arn}/",
+                "${var.s3_arn}/*"
+            ]
+        }
+    ]
+  })
+
+}
+
+resource "aws_iam_role_policy_attachment" "test-attach" {
+  role       = data.aws_iam_role.ecs_task_execution_role.name
+  policy_arn = aws_iam_policy.s3_access.arn
+}
+
+
+
 
 resource "aws_ecs_task_definition" "td" {
   family = "${local.name}-task-definition"
