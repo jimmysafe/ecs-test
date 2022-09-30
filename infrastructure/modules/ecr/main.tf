@@ -24,3 +24,27 @@ resource "aws_ecr_repository" "ecr" {
         interpreter = ["/bin/bash", "-c"]
     }
 }
+
+resource "aws_ecr_lifecycle_policy" "expire_policy" {
+  repository = aws_ecr_repository.ecr.name
+
+  policy = <<EOF
+    {
+      "rules": [
+        {
+          "rulePriority": 1,
+          "description": "remove untagged images after 1 day",
+          "selection": {
+            "tagStatus": "untagged",
+            "countType": "sinceImagePushed",
+            "countUnit": "days",
+            "countNumber": 1
+          },
+          "action": {
+            "type": "expire"
+          }
+        }
+      ]
+    }
+  EOF
+}
