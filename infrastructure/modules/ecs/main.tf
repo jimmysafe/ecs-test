@@ -36,9 +36,11 @@ resource "aws_ecs_task_definition" "td" {
       "memory": 2048,
       "image": "${var.ecr_image}",
       "essential": true,
-      "environment": [
-        {"name": "PORT", "value": "${var.app_port}"}
-      ],
+      "environment": [],
+      "secrets": [{
+        "name": "env",
+        "valueFrom": "arn:aws:secretsmanager:eu-central-1:659393744621:secret:test-secret-nkKidB"
+      }],
       "portMappings": [
         {
           "containerPort": ${var.app_port},
