@@ -38,7 +38,7 @@ resource "aws_iam_policy" "s3_access" {
         },
         {
             Effect = "Allow"
-            "Action": [
+            Action = [
                 "s3:GetBucketLocation"
             ],
             Resource = [
