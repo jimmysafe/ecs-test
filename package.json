@@ -3,9 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@release-it/conventional-changelog": "^5.1.0",
+    "husky": "^8.0.1",
+    "release-it": "^15.4.2"
+  },
   "scripts": {
     "start": "node index.js",
+    "release": "release-it",
     "sync:prod": "aws s3api put-object --bucket elephant-production-bucket --key .production.env --body .production.env"
   },
   "keywords": [],
@@ -14,5 +21,40 @@
   "dependencies": {
     "dotenv": "^16.0.2",
     "express": "^4.18.1"
+  },
+  "release-it": {
+    "git": {
+      "requireBranch": "master",
+      "commitMessage": "chore: release v${version}"
+    },
+    "hooks": {
+      "before:init": [
+        "git pull origin master"
+      ]
+    },
+    "github": {
+      "release": true
+    },
+    "npm": {
+      "publish": false
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "infile": "CHANGELOG.md",
+        "preset": {
+          "name": "conventionalcommits",
+          "types": [
+            {
+              "type": "feat",
+              "section": "Features"
+            },
+            {
+              "type": "fix",
+              "section": "Bug Fixes"
+            }
+          ]
+        }
+      }
+    }
   }
 }
