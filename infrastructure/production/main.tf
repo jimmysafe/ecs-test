@@ -70,8 +70,8 @@ module "ecs" {
     lb_target_group_arn = module.load-balancer.output_lb_target_group_arn
     lb_security_group_id = module.load-balancer.output_lb_security_group_id
     vpc_id      = module.vpc.output_vpc_id
-    subnet_1_id = module.vpc.output_public_subnet_1_id
-    subnet_2_id = module.vpc.output_public_subnet_2_id
+    subnet_1_id = module.vpc.output_private_subnet_1_id
+    subnet_2_id = module.vpc.output_private_subnet_2_id
     s3_arn = module.s3.output_s3_arn
     depends_on = [
       module.ecr,
