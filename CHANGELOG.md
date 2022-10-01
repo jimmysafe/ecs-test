@@ -1,5 +1,7 @@
 
 
+## [1.1.4](https://github.com/jimmysafe/ecs-test/compare/1.1.3...1.1.4) (2022-10-01)
+
 ## [1.1.3](https://github.com/jimmysafe/ecs-test/compare/1.1.2...1.1.3) (2022-10-01)
 
 ## [1.1.2](https://github.com/jimmysafe/ecs-test/compare/1.1.1...1.1.2) (2022-10-01)
